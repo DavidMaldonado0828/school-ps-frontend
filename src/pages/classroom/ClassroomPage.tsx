@@ -81,7 +81,7 @@ export default function ClassroomPage() {
       );
     }
     setEstudianteEditando(null);
-    setMensajeExito('Estado del pupitre actualizado exitosamente')
+    setMensajeExito('Estado del pupitre actualizado exitosamente');
   };
 
   const handleExitoBulk = async (total: number) => {
@@ -96,7 +96,15 @@ export default function ClassroomPage() {
   return (
     <div style={{ padding: '0 32px 32px 32px', maxWidth: '1200px', margin: '0 auto' }}>
       <div style={{ marginBottom: '20px', paddingTop: '10px' }}>
-        <h1 style={{ fontSize: '1.875rem', fontWeight: 700, color: '#111827', margin: 0, marginBottom: '4px' }}>
+        <h1
+          style={{
+            fontSize: '1.875rem',
+            fontWeight: 700,
+            color: '#111827',
+            margin: 0,
+            marginBottom: '4px',
+          }}
+        >
           Salón de Tesorería
         </h1>
         <p style={{ fontSize: '1rem', color: '#6b7280', margin: 0 }}>
@@ -104,10 +112,25 @@ export default function ClassroomPage() {
         </p>
       </div>
 
-      <SearchSection grados={grados} loading={loading} onBuscar={handleBuscar} />
+      <SearchSection
+        grados={grados}
+        loading={loading}
+        onBuscar={(codigo, grado) => {
+          void handleBuscar(codigo, grado);
+        }}
+      />
 
       {mensajeError && (
-        <div style={{ marginTop: '16px', padding: '12px', borderRadius: '6px', backgroundColor: 'var(--status-red-bg)', color: 'var(--status-red)', fontSize: '0.875rem' }}>
+        <div
+          style={{
+            marginTop: '16px',
+            padding: '12px',
+            borderRadius: '6px',
+            backgroundColor: 'var(--status-red-bg)',
+            color: 'var(--status-red)',
+            fontSize: '0.875rem',
+          }}
+        >
           {mensajeError}
         </div>
       )}
@@ -117,8 +140,18 @@ export default function ClassroomPage() {
           {mostrarBotonCurso && (
             <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: '12px' }}>
               <button
-                onClick={() => { setMostrarBulkForm(true); setEstudianteEditando(null); }}
-                style={{ backgroundColor: '#f97316', color: 'white', padding: '10px 24px', borderRadius: '8px', border: 'none', cursor: 'pointer' }}
+                onClick={() => {
+                  setMostrarBulkForm(true);
+                  setEstudianteEditando(null);
+                }}
+                style={{
+                  backgroundColor: '#f97316',
+                  color: 'white',
+                  padding: '10px 24px',
+                  borderRadius: '8px',
+                  border: 'none',
+                  cursor: 'pointer',
+                }}
               >
                 Actualizar Curso Completo
               </button>
@@ -126,7 +159,10 @@ export default function ClassroomPage() {
           )}
           <PupitreTable
             data={tableData}
-            onEdit={(row) => { setEstudianteEditando(row); setMostrarBulkForm(false); }}
+            onEdit={(row) => {
+              setEstudianteEditando(row);
+              setMostrarBulkForm(false);
+            }}
           />
         </div>
       )}
@@ -136,8 +172,12 @@ export default function ClassroomPage() {
           estudiante_id={estudianteEditando.estudiante_id}
           nombre={estudianteEditando.nombre_estudiante}
           estadoActual={estudianteEditando.estado_pupitre}
-          onCancelar={() => setEstudianteEditando(null)}
-          onExito={(nuevoEstado) => { void handleExitoUpdate(nuevoEstado); }}
+          onCancelar={() => {
+            setEstudianteEditando(null);
+          }}
+          onExito={(nuevoEstado) => {
+            void handleExitoUpdate(nuevoEstado);
+          }}
         />
       )}
 
@@ -145,15 +185,21 @@ export default function ClassroomPage() {
         <BulkUpdateForm
           grado_id={gradoActual}
           grado_nombre={gradoNombre}
-          onCancelar={() => setMostrarBulkForm(false)}
-          onExito={(total) => { void handleExitoBulk(total); }}
+          onCancelar={() => {
+            setMostrarBulkForm(false);
+          }}
+          onExito={(total) => {
+            void handleExitoBulk(total);
+          }}
         />
       )}
 
       <SuccessModal
         isOpen={!!mensajeExito}
         mensaje={mensajeExito ?? ''}
-        onClose={() => setMensajeExito(null)}
+        onClose={() => {
+          setMensajeExito(null);
+        }}
       />
     </div>
   );

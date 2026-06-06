@@ -48,8 +48,10 @@ export const UpdatePupitreForm = ({
             <input
               type="radio"
               name="estado"
-              checked={estado === true}
-              onChange={() => setEstado(true)}
+              checked={estado}
+              onChange={() => {
+                setEstado(true);
+              }}
             />
             Bueno
           </label>
@@ -57,8 +59,10 @@ export const UpdatePupitreForm = ({
             <input
               type="radio"
               name="estado"
-              checked={estado === false}
-              onChange={() => setEstado(false)}
+              checked={!estado}
+              onChange={() => {
+                setEstado(false);
+              }}
             />
             Malo
           </label>
@@ -69,7 +73,9 @@ export const UpdatePupitreForm = ({
           type="text"
           placeholder="Ej. Silla coja, Pupitre rayado, Falta tornillo base."
           value={observacion}
-          onChange={(e) => setObservacion(e.target.value)}
+          onChange={(e) => {
+            setObservacion(e.target.value);
+          }}
           style={{
             width: '100%',
             padding: '10px 12px',
@@ -114,7 +120,9 @@ export const UpdatePupitreForm = ({
       {/* Modal de confirmación */}
       <Modal
         isOpen={mostrarConfirmacion}
-        onClose={() => setMostrarConfirmacion(false)}
+        onClose={() => {
+          setMostrarConfirmacion(false);
+        }}
         title="Confirmar cambio de estado"
       >
         <p style={{ marginBottom: '24px', color: '#4b5563' }}>
@@ -124,7 +132,9 @@ export const UpdatePupitreForm = ({
         <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '12px' }}>
           <Button
             variant="outline"
-            onClick={() => setMostrarConfirmacion(false)}
+            onClick={() => {
+              setMostrarConfirmacion(false);
+            }}
             disabled={loading}
           >
             Cancelar

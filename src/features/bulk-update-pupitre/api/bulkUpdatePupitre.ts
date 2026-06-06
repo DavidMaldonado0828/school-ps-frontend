@@ -17,7 +17,7 @@ export const bulkUpdatePupitre = async (
   grado_id: number,
   payload: BulkUpdatePayload,
 ): Promise<BulkUpdateResponse> => {
-  return fetchApi<BulkUpdateResponse>(`/classroom/pupitre/grado/${grado_id}`, {
+  return fetchApi<BulkUpdateResponse>(`/classroom/pupitre/grado/${String(grado_id)}`, {
     method: 'PATCH',
     body: JSON.stringify(payload),
   });

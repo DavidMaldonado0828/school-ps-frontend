@@ -7,5 +7,5 @@ export const getAllGrades = async (): Promise<GradeInfo[]> => {
 };
 
 export const getPupitresByGrade = async (grado_id: number): Promise<PupitresByGradeResponse> => {
-  return fetchApi<PupitresByGradeResponse>(`/classroom/pupitre/grado/${grado_id}`);
+  return fetchApi<PupitresByGradeResponse>(`/classroom/pupitre/grado/${String(grado_id)}`);
 };

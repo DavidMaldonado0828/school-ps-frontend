@@ -39,7 +39,9 @@ export const PupitreTable = ({ data, onEdit }: PupitreTableProps) => {
       render: (_: unknown, row: unknown) =>
         onEdit ? (
           <button
-            onClick={() => onEdit(row as TableRow)}
+            onClick={() => {
+              onEdit(row as TableRow);
+            }}
             style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#9ca3af' }}
           >
             <Pencil size={16} />

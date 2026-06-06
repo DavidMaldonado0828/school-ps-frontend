@@ -20,7 +20,7 @@ export const updatePupitre = async (
   estudiante_id: number,
   payload: UpdatePupitrePayload,
 ): Promise<UpdatePupitreResponse> => {
-  return fetchApi<UpdatePupitreResponse>(`/classroom/pupitre/${estudiante_id}`, {
+  return fetchApi<UpdatePupitreResponse>(`/classroom/pupitre/${String(estudiante_id)}`, {
     method: 'PATCH',
     body: JSON.stringify(payload),
   });

@@ -37,7 +37,9 @@ export const PupitresByGradeSection = ({ onSeleccionar }: PupitresByGradeSection
       <form onSubmit={(e) => void handleSubmit(e)}>
         <select
           value={gradoSeleccionado ?? ''}
-          onChange={(e) => setGradoSeleccionado(Number(e.target.value))}
+          onChange={(e) => {
+            setGradoSeleccionado(Number(e.target.value));
+          }}
         >
           <option value="">Seleccione un curso</option>
           {grados.map((g) => (
@@ -58,7 +60,9 @@ export const PupitresByGradeSection = ({ onSeleccionar }: PupitresByGradeSection
         <div style={{ marginTop: '16px' }}>
           <PupitreTable
             data={pupitres}
-            onEdit={(p) => onSeleccionar(p as unknown as PupitreByGrade)}
+            onEdit={(p) => {
+              onSeleccionar(p as unknown as PupitreByGrade);
+            }}
           />
         </div>
       )}

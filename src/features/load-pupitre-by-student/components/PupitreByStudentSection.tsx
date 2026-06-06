@@ -35,7 +35,11 @@ export const PupitreByStudentSection = ({ onSeleccionar }: PupitreByStudentSecti
         <Search size={20} /> Buscar por Código
       </h3>
 
-      <form onSubmit={(e) => void handleSubmit(e)}>
+      <form
+        onSubmit={(e) => {
+          handleSubmit(e);
+        }}
+      >
         <div
           style={{
             display: 'grid',
@@ -49,7 +53,9 @@ export const PupitreByStudentSection = ({ onSeleccionar }: PupitreByStudentSecti
             placeholder="Ej. 2024001"
             type="text"
             value={codigo}
-            onChange={(e) => setCodigo(e.target.value)}
+            onChange={(e) => {
+              setCodigo(e.target.value);
+            }}
           />
           <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
             <Button
@@ -84,7 +90,9 @@ export const PupitreByStudentSection = ({ onSeleccionar }: PupitreByStudentSecti
         <div style={{ marginTop: '16px' }}>
           <PupitreTable
             data={data}
-            onEdit={(estudiante) => onSeleccionar(estudiante as ClassroomStudent)}
+            onEdit={(estudiante) => {
+              onSeleccionar(estudiante as ClassroomStudent);
+            }}
           />
         </div>
       )}
