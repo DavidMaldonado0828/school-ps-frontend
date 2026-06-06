@@ -1,5 +1,5 @@
-import { Modal } from './Modal';
-import { Button } from './Button';
+import { Modal } from '../atoms/Modal';
+import { Button } from '../atoms/Button';
 
 interface SuccessModalProps {
   isOpen: boolean;

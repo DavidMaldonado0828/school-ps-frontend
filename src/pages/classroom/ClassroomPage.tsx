@@ -6,7 +6,7 @@ import { SearchSection } from '@/features/classroom/components/SearchSection';
 import { PupitreTable } from '@/features/classroom/components/PupitreTable';
 import { UpdatePupitreForm } from '@/features/update-pupitre/components/UpdatePupitreForm';
 import { BulkUpdateForm } from '@/features/bulk-update-pupitre/components/BulkUpdateForm';
-import { SuccessModal } from '@/shared/ui/atoms/SuccessModal';
+import { SuccessModal } from '@/shared/ui/molecules/SuccessModal';
 
 interface TableRow {
   id: number;
