@@ -53,9 +53,13 @@ export const PupitreByStudentSection = ({ onSeleccionar }: PupitreByStudentSecti
             placeholder="Ej. 2024001"
             type="text"
             value={codigo}
+<<<<<<< HEAD
             onChange={(e) => {
               setCodigo(e.target.value);
             }}
+=======
+            onChange={(e) => setCodigo(e.target.value)}
+>>>>>>> f0c03f0e73544f32348d0ae1997bd447d51ba72d
           />
           <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
             <Button
@@ -72,6 +76,7 @@ export const PupitreByStudentSection = ({ onSeleccionar }: PupitreByStudentSecti
       </form>
 
       {error && (
+<<<<<<< HEAD
         <div
           style={{
             marginTop: '16px',
@@ -82,12 +87,16 @@ export const PupitreByStudentSection = ({ onSeleccionar }: PupitreByStudentSecti
             fontSize: '0.875rem',
           }}
         >
+=======
+        <div style={{ marginTop: '16px', padding: '12px', borderRadius: '6px', backgroundColor: 'var(--status-red-bg)', color: 'var(--status-red)', fontSize: '0.875rem' }}>
+>>>>>>> f0c03f0e73544f32348d0ae1997bd447d51ba72d
           {error}
         </div>
       )}
 
       {data.length > 0 && (
         <div style={{ marginTop: '16px' }}>
+<<<<<<< HEAD
           <PupitreTable
             data={data}
             onEdit={(estudiante) => {
@@ -99,3 +108,17 @@ export const PupitreByStudentSection = ({ onSeleccionar }: PupitreByStudentSecti
     </div>
   );
 };
+=======
+          <DataTable
+            columns={PUPITRE_COLUMNS}
+            data={data}
+            onSelect={onSeleccionar}
+            emptyMessage="No se encontró el estudiante"
+          />
+        </div>
+      )}
+
+    </div>
+  )
+}
+>>>>>>> f0c03f0e73544f32348d0ae1997bd447d51ba72d
