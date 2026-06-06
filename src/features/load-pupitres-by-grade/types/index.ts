@@ -1,1 +1,1 @@
-export type { GradeInfo, PupitreByGrade, PupitresByGradeResponse } from './load-api'
+export type { GradeInfo, PupitreByGrade, PupitresByGradeResponse } from './load-api';

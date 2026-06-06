@@ -12,31 +12,31 @@ export const useLoadPupitresByGrade = () => {
   useEffect(() => {
     const fetchGrades = async () => {
       try {
-        const data = await getAllGrades()
-        setGrados(data)
+        const data = await getAllGrades();
+        setGrados(data);
       } catch (err: unknown) {
-        console.error('Error cargando grados:', err)
+        console.error('Error cargando grados:', err);
       }
-    }
-    void fetchGrades()
-  }, [])
+    };
+    void fetchGrades();
+  }, []);
 
   // Busca los pupitres de un grado
- const fetchPupitresByGrade = useCallback(async (grado_id: number) => {
-  setLoading(true)
-  setError(null)
-  try {
-    const response = await getPupitresByGrade(grado_id)
-    setPupitres(response.data)
-    return response.data
-  } catch (err: unknown) {
-    setError(err instanceof Error ? err.message : 'Error al buscar')
-    setPupitres([])
-    return null
-  } finally {
-    setLoading(false)
-  }
-}, [])
+  const fetchPupitresByGrade = useCallback(async (grado_id: number) => {
+    setLoading(true);
+    setError(null);
+    try {
+      const response = await getPupitresByGrade(grado_id);
+      setPupitres(response.data);
+      return response.data;
+    } catch (err: unknown) {
+      setError(err instanceof Error ? err.message : 'Error al buscar');
+      setPupitres([]);
+      return null;
+    } finally {
+      setLoading(false);
+    }
+  }, []);
 
-  return { loading, error, grados, pupitres, fetchPupitresByGrade }
-}
+  return { loading, error, grados, pupitres, fetchPupitresByGrade };
+};

@@ -1,1 +1,1 @@
-export type { ClassroomStudent, PupitreByStudentResponse } from './load-api'
+export type { ClassroomStudent, PupitreByStudentResponse } from './load-api';

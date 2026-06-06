@@ -8,20 +8,20 @@ export const useLoadPupitreByStudent = () => {
   const [estudiante, setEstudiante] = useState<ClassroomStudent | null>(null);
 
   const fetchPupitre = useCallback(async (documento: string) => {
-  setLoading(true)
-  setError(null)
-  try {
-    const response = await getPupitreByStudent(documento.trim())
-    setEstudiante(response.data)
-    return response.data
-  } catch (err: unknown) {
-    setError(err instanceof Error ? err.message : 'Error al buscar')
-    setEstudiante(null)
-    return null
-  } finally {
-    setLoading(false)
-  }
-}, [])
+    setLoading(true);
+    setError(null);
+    try {
+      const response = await getPupitreByStudent(documento.trim());
+      setEstudiante(response.data);
+      return response.data;
+    } catch (err: unknown) {
+      setError(err instanceof Error ? err.message : 'Error al buscar');
+      setEstudiante(null);
+      return null;
+    } finally {
+      setLoading(false);
+    }
+  }, []);
 
   return { loading, error, estudiante, fetchPupitre };
 };
