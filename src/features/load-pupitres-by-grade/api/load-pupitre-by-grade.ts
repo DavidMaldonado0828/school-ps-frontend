@@ -2,7 +2,7 @@ import { fetchApi } from '@/shared/api/apiClient';
 import type { GradeInfo, PupitresByGradeResponse } from '../types';
 
 export const getAllGrades = async (): Promise<GradeInfo[]> => {
-  const response = await fetchApi<{ data: GradeInfo[] }>('/classroom/pupitre/grades'); // 👈 faltaba / y s en classroom
+  const response = await fetchApi<{ data: GradeInfo[] }>('/classroom/pupitre/grades');
   return response.data;
 };
 
