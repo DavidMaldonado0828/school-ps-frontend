@@ -1,3 +1,5 @@
+import { fetchApi } from '@/shared/api/apiClient';
+
 export interface StudentSearchItem {
   estudiante_id: number;
   documento: string;
@@ -76,7 +78,69 @@ export interface ModifyEnrollmentResponse {
   observaciones_registradas?: string | null;
 }
 
-import { fetchApi } from '@/shared/api/apiClient';
+export interface MassEnrollmentResponse {
+  status: 'success' | 'partial' | 'error';
+  processed: number;
+  success: number;
+  errors: number;
+  error_details: string[];
+}
+
+export interface ManualEnrollmentPayload {
+  documento: string;
+  nombre: string;
+  grado: string;
+  nombre_acudiente: string;
+  periodo_id: number;
+  anio: number;
+}
+
+export interface PaymentHistoryItem {
+  id: number;
+  codigo_talonario: string;
+  monto_total: number;
+  fecha_pago: string;
+  observacion: string | null;
+}
+
+export interface PaymentReceiptResponse {
+  pago_id: number;
+  codigo_talonario: string;
+  monto_total: number;
+  fecha_pago: string;
+  observacion: string | null;
+  estudiante: {
+    id: number;
+    nombre: string;
+    documento: string;
+    grado: string;
+  };
+  acudiente: {
+    nombre: string;
+  };
+  distribuciones: {
+    concepto: string;
+    complementario_id?: number | null;
+    monto_aplicado: number;
+  }[];
+}
+
+export interface ComplementaryConcept {
+  id: number;
+  tipo_complementario: string;
+  anio: number;
+  valor: number;
+  estado_complemento: string;
+  uso_matricula: boolean;
+}
+
+export interface CreateComplementaryPayload {
+  tipo_complementario: string;
+  anio: number;
+  valor: number;
+  estado_complemento: string;
+  uso_matricula: boolean;
+}
 
 export const enrollmentApi = {
   searchStudents: async (params: {
@@ -134,6 +198,81 @@ export const enrollmentApi = {
       `/enrollment/students/${matriculaId.toString()}/matricula`,
       {
         method: 'PUT',
+        body: JSON.stringify(payload),
+      },
+    );
+  },
+
+  registerMassiveCsv: async (
+    periodoId: number,
+    anio: number,
+    file: File,
+  ): Promise<MassEnrollmentResponse> => {
+    const formData = new FormData();
+    formData.append('file', file);
+
+    return fetchApi<MassEnrollmentResponse>(
+      `/enrollment/register/massive/csv?periodo_id=${periodoId.toString()}&anio=${anio.toString()}`,
+      {
+        method: 'POST',
+        body: formData,
+      },
+    );
+  },
+
+  manualEnrollment: async (
+    payload: ManualEnrollmentPayload,
+  ): Promise<{ mensaje: string; matricula_id: number }> => {
+    return fetchApi<{ mensaje: string; matricula_id: number }>('/enrollment/students/manual', {
+      method: 'POST',
+      body: JSON.stringify(payload),
+    });
+  },
+
+  getPaymentHistory: async (studentId: number, year?: number): Promise<PaymentHistoryItem[]> => {
+    const query = year ? `?year=${year.toString()}` : '';
+    return fetchApi<PaymentHistoryItem[]>(
+      `/enrollment/students/${studentId.toString()}/payments${query}`,
+    );
+  },
+
+  getPaymentReceipt: async (pagoId: number): Promise<PaymentReceiptResponse> => {
+    return fetchApi<PaymentReceiptResponse>(`/enrollment/payments/${pagoId.toString()}/receipt`);
+  },
+
+  deleteComplementaryDetail: async (
+    detalleId: number,
+  ): Promise<{ mensaje: string; detalle_id: number; matricula_id: number }> => {
+    return fetchApi<{ mensaje: string; detalle_id: number; matricula_id: number }>(
+      `/enrollment/details/${detalleId.toString()}`,
+      {
+        method: 'DELETE',
+      },
+    );
+  },
+
+  getComplementaryConcepts: async (year?: number): Promise<ComplementaryConcept[]> => {
+    const query = year !== undefined ? `?year=${year.toString()}` : '';
+    return fetchApi<ComplementaryConcept[]>(`/enrollment/complementary${query}`);
+  },
+
+  createComplementaryConcept: async (
+    payload: CreateComplementaryPayload,
+  ): Promise<{ mensaje: string; complementario_id: number }> => {
+    return fetchApi<{ mensaje: string; complementario_id: number }>('/enrollment/complementary', {
+      method: 'POST',
+      body: JSON.stringify(payload),
+    });
+  },
+
+  assignComplementaryConcept: async (
+    matriculaId: number,
+    payload: { complementario_id: number; descuento: number },
+  ): Promise<{ mensaje: string; detalle_id: number }> => {
+    return fetchApi<{ mensaje: string; detalle_id: number }>(
+      `/enrollment/${matriculaId.toString()}/complementary/assign`,
+      {
+        method: 'POST',
         body: JSON.stringify(payload),
       },
     );
