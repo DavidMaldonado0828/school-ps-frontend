@@ -96,7 +96,6 @@ export default function ClassroomPage() {
 
   return (
     <div className="classroom-view">
-
       <div className="page-title">
         <h1>Salón de Tesorería</h1>
         <p>Control del mobiliario asignado</p>
@@ -105,7 +104,12 @@ export default function ClassroomPage() {
       <div className="card">
         <div className="search-header">
           <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+            />
           </svg>
           Filtros de búsqueda
         </div>
@@ -115,7 +119,9 @@ export default function ClassroomPage() {
         <SearchSection
           grados={grados}
           loading={loading}
-          onBuscar={(codigo, grado) => { void handleBuscar(codigo, grado); }}
+          onBuscar={(codigo, grado) => {
+            void handleBuscar(codigo, grado);
+          }}
         />
       </div>
 
@@ -127,7 +133,10 @@ export default function ClassroomPage() {
             <div className="bulk-update-section">
               <button
                 className="btn-orange"
-                onClick={() => { setMostrarBulkForm(true); setEstudianteEditando(null); }}
+                onClick={() => {
+                  setMostrarBulkForm(true);
+                  setEstudianteEditando(null);
+                }}
               >
                 Actualizar Curso Completo
               </button>
@@ -135,7 +144,10 @@ export default function ClassroomPage() {
           )}
           <PupitreTable
             data={tableData}
-            onEdit={(row) => { setEstudianteEditando(row); setMostrarBulkForm(false); }}
+            onEdit={(row) => {
+              setEstudianteEditando(row);
+              setMostrarBulkForm(false);
+            }}
           />
         </div>
       )}
@@ -146,8 +158,12 @@ export default function ClassroomPage() {
           estudiante_id={estudianteEditando.estudiante_id}
           nombre={estudianteEditando.nombre_estudiante}
           estadoActual={estudianteEditando.estado_pupitre}
-          onCancelar={() => { setEstudianteEditando(null); }}
-          onExito={(nuevoEstado) => { void handleExitoUpdate(nuevoEstado); }}
+          onCancelar={() => {
+            setEstudianteEditando(null);
+          }}
+          onExito={(nuevoEstado) => {
+            void handleExitoUpdate(nuevoEstado);
+          }}
         />
       )}
 
@@ -156,17 +172,22 @@ export default function ClassroomPage() {
           isOpen={mostrarBulkForm}
           grado_id={gradoActual}
           grado_nombre={gradoNombre}
-          onCancelar={() => { setMostrarBulkForm(false); }}
-          onExito={(total) => { void handleExitoBulk(total); }}
+          onCancelar={() => {
+            setMostrarBulkForm(false);
+          }}
+          onExito={(total) => {
+            void handleExitoBulk(total);
+          }}
         />
       )}
 
       <SuccessModal
         isOpen={!!mensajeExito}
         mensaje={mensajeExito ?? ''}
-        onClose={() => { setMensajeExito(null); }}
+        onClose={() => {
+          setMensajeExito(null);
+        }}
       />
-
     </div>
   );
 }

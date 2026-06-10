@@ -26,7 +26,10 @@ export const SearchSection = ({ grados, loading, onBuscar }: SearchSectionProps)
           type="text"
           placeholder="Ej. 123456789"
           value={codigo}
-          onChange={(e) => { setCodigo(e.target.value); setGradoSeleccionado(null); }}
+          onChange={(e) => {
+            setCodigo(e.target.value);
+            setGradoSeleccionado(null);
+          }}
         />
       </div>
 
@@ -34,11 +37,16 @@ export const SearchSection = ({ grados, loading, onBuscar }: SearchSectionProps)
         <label>Curso</label>
         <select
           value={gradoSeleccionado ?? ''}
-          onChange={(e) => { setGradoSeleccionado(Number(e.target.value)); setCodigo(''); }}
+          onChange={(e) => {
+            setGradoSeleccionado(Number(e.target.value));
+            setCodigo('');
+          }}
         >
           <option value="">Seleccione un curso</option>
           {grados.map((g) => (
-            <option key={g.id} value={g.id}>{g.nombre}</option>
+            <option key={g.id} value={g.id}>
+              {g.nombre}
+            </option>
           ))}
         </select>
       </div>
@@ -49,7 +57,12 @@ export const SearchSection = ({ grados, loading, onBuscar }: SearchSectionProps)
         disabled={loading || (!codigo && !gradoSeleccionado)}
       >
         <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+          />
         </svg>
         {loading ? 'Buscando...' : 'Buscar'}
       </button>
