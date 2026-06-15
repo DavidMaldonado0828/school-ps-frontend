@@ -1,7 +1,4 @@
-import { Search, Info } from 'lucide-react';
 import { useState, type SubmitEvent } from 'react';
-import { Button } from '@/shared/ui/atoms/Button';
-import { Input } from '@/shared/ui/atoms/Input';
 import type { GradeInfo } from '@/features/load-pupitres-by-grade/types';
 
 interface SearchSectionProps {
@@ -17,124 +14,83 @@ export const SearchSection = ({ grados, loading, onBuscar }: SearchSectionProps)
   const handleSubmit = (e: SubmitEvent) => {
     e.preventDefault();
     onBuscar(codigo, gradoSeleccionado);
-    setCodigo('');
-    setGradoSeleccionado(null);
   };
 
   return (
-    <div
-      style={{
-        padding: '24px',
-        backgroundColor: '#fff',
-        borderRadius: '12px',
-        border: '1px solid #e5e7eb',
-        boxShadow: '0 4px 6px -1px rgba(0,0,0,0.1)',
-      }}
-    >
-      <h3
-        style={{
-          fontSize: '1.25rem',
-          fontWeight: 600,
-          color: '#111827',
-          marginBottom: '20px',
-          display: 'flex',
-          alignItems: 'center',
-          gap: '8px',
-        }}
-      >
-        <Search size={22} /> Filtros de búsqueda
-      </h3>
-
-      <div
-        style={{
-          backgroundColor: '#f9fafb',
-          padding: '12px 16px',
-          borderRadius: '8px',
-          border: '1px dashed #d1d5db',
-          marginBottom: '20px',
-          color: '#4b5563',
-          fontSize: '0.875rem',
-          display: 'flex',
-          alignItems: 'center',
-          gap: '10px',
-        }}
-      >
-        <Info size={18} color="#6b7280" />
-        <span>Busque por código de estudiante o seleccione un curso.</span>
+    <div className="card search-section">
+      <div className="search-header">
+        <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+          />
+        </svg>
+        Filtros de búsqueda
       </div>
 
-      <form onSubmit={handleSubmit}>
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: '1fr 1fr',
-            gap: '20px',
-            alignItems: 'end',
-          }}
-        >
-          <Input
-            label="Código"
+      <div className="search-info">
+        <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+          />
+        </svg>
+        Busque por código de estudiante o seleccione un curso.
+      </div>
+
+      <form className="search-form" onSubmit={handleSubmit}>
+        <div className="input-group">
+          <label>Código</label>
+          <input
+            type="text"
             placeholder="Ej. 123456789"
             value={codigo}
             onChange={(e) => {
               setCodigo(e.target.value);
               setGradoSeleccionado(null);
             }}
+            disabled={loading}
           />
-
-          <div className="input-container">
-            <label
-              style={{
-                display: 'block',
-                fontSize: '0.875rem',
-                fontWeight: 500,
-                color: '#374151',
-                marginBottom: '8px',
-              }}
-            >
-              Curso
-            </label>
-            <select
-              style={{
-                width: '100%',
-                padding: '10px',
-                borderRadius: '8px',
-                border: '1px solid #d1d5db',
-                backgroundColor: '#fff',
-                fontSize: '1rem',
-              }}
-              value={gradoSeleccionado ?? ''}
-              onChange={(e) => {
-                setGradoSeleccionado(Number(e.target.value));
-                setCodigo('');
-              }}
-            >
-              <option value="">Seleccione un curso</option>
-              {grados.map((g) => (
-                <option key={g.id} value={g.id}>
-                  {g.nombre}
-                </option>
-              ))}
-            </select>
-          </div>
         </div>
 
-        <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '24px' }}>
-          <Button
-            type="submit"
-            disabled={loading || (!codigo && !gradoSeleccionado)}
-            style={{
-              backgroundColor: '#991b1b',
-              color: 'white',
-              padding: '10px 24px',
-              borderRadius: '8px',
-              border: 'none',
-              cursor: 'pointer',
+        <div className="input-group">
+          <label>Curso</label>
+          <select
+            value={gradoSeleccionado ?? ''}
+            onChange={(e) => {
+              setGradoSeleccionado(Number(e.target.value));
+              setCodigo('');
             }}
+            disabled={loading}
           >
-            {loading ? 'Buscando...' : 'Buscar'}
-          </Button>
+            <option value="">Seleccione un curso</option>
+            {grados.map((g) => (
+              <option key={g.id} value={g.id}>
+                {g.nombre}
+              </option>
+            ))}
+          </select>
         </div>
+
+        <button
+          type="submit"
+          className="btn-primary"
+          disabled={loading || (!codigo && !gradoSeleccionado)}
+        >
+          <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+            />
+          </svg>
+          {loading ? 'Buscando...' : 'Buscar'}
+        </button>
       </form>
     </div>
   );

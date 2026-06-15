@@ -1,14 +1,14 @@
 import { fetchApi } from '@/shared/api/apiClient';
 
 interface BulkUpdatePayload {
-  estado_pupitre: boolean;
-  observacion: string | null;
+  estudiante_ids: number[];
 }
 
 interface BulkUpdateResponse {
   statusCode: number;
   data: {
     total_actualizados: number;
+    ids_no_encontrados: number[];
   };
   message: string;
 }
