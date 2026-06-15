@@ -39,7 +39,7 @@ export default function ClassroomPage() {
   const [mensajeExito, setMensajeExito] = useState<string | null>(null);
   const [estudianteEditando, setEstudianteEditando] = useState<TableRow | null>(null);
   const [gradoActual, setGradoActual] = useState<number | null>(null);
-  const [selectedIds, setSelectedIds] = useState<Set<number>>(new Set());
+  const [selectedIds, setSelectedIds] = useState<Set<number>>(() => new Set());
   const [mostrarConfirmBulk, setMostrarConfirmBulk] = useState(false);
 
   const loading = loadingE || loadingG || loadingBulk;
@@ -102,7 +102,9 @@ export default function ClassroomPage() {
     const result = await bulkUpdate(gradoActual, Array.from(selectedIds));
     if (result) {
       setMostrarConfirmBulk(false);
-      setMensajeExito(`Se confirmaron ${result.total_actualizados.toString()} pago(s) exitosamente`);
+      setMensajeExito(
+        `Se confirmaron ${result.total_actualizados.toString()} pago(s) exitosamente`,
+      );
       setSelectedIds(new Set());
       const data = await fetchPupitresByGrade(gradoActual);
       if (data) setTableData(data.map((p) => ({ ...p, id: p.id })));
@@ -112,7 +114,10 @@ export default function ClassroomPage() {
   const estudiantesSeleccionados = tableData.filter((row) => selectedIds.has(row.estudiante_id));
 
   return (
-    <div className="classroom-view" style={{ padding: '0 32px 32px 32px', maxWidth: '1200px', margin: '0 auto' }}>
+    <div
+      className="classroom-view"
+      style={{ padding: '0 32px 32px 32px', maxWidth: '1200px', margin: '0 auto' }}
+    >
       <div className="page-title" style={{ paddingTop: '10px' }}>
         <h1>Salón de Tesorería</h1>
         <p>Control del pago de mantenimiento de pupitre</p>

@@ -39,15 +39,17 @@ export const BulkConfirmModal = ({
             <strong>{estudiantes.length}</strong> estudiante(s):
           </p>
 
-        <ul className="bulk-list">
+          <ul className="bulk-list">
             {estudiantes.map((e) => (
-                <li key={e.estudiante_id}>
-                    <span style={{ color: 'var(--text-muted)', minWidth: '90px' }}>{e.documento}</span>
-                    <span style={{ flex: 1, textAlign: 'left', paddingLeft: '12px' }}>{e.nombre_estudiante}</span>
-                    <span style={{ color: 'var(--text-muted)' }}>{e.grado}</span>
-                </li>
+              <li key={e.estudiante_id}>
+                <span style={{ color: 'var(--text-muted)', minWidth: '90px' }}>{e.documento}</span>
+                <span style={{ flex: 1, textAlign: 'left', paddingLeft: '12px' }}>
+                  {e.nombre_estudiante}
+                </span>
+                <span style={{ color: 'var(--text-muted)' }}>{e.grado}</span>
+              </li>
             ))}
-        </ul>
+          </ul>
 
           <p style={{ fontSize: '0.95rem', margin: 0 }}>
             Valor unitario: <strong>{formatCurrency(valorUnitario)}</strong>

@@ -94,7 +94,13 @@ export const UpdatePupitreForm = ({
         <div className="modal-overlay">
           <div className="modal-content" style={{ width: '380px', textAlign: 'center' }}>
             <h3 style={{ marginBottom: '0.75rem' }}>{titulo}</h3>
-            <p style={{ color: 'var(--text-secondary)', fontSize: '0.875rem', marginBottom: '1.5rem' }}>
+            <p
+              style={{
+                color: 'var(--text-secondary)',
+                fontSize: '0.875rem',
+                marginBottom: '1.5rem',
+              }}
+            >
               {esPagado ? (
                 <>
                   ¿Está seguro que desea marcar a <strong>{nombre}</strong> como{' '}

@@ -37,7 +37,9 @@ export const PupitreTable = ({
                 <input
                   type="checkbox"
                   checked={selectedIds?.has(r.estudiante_id) ?? false}
-                  onChange={() => onToggleSelect(r.estudiante_id)}
+                  onChange={() => {
+                    onToggleSelect(r.estudiante_id);
+                  }}
                 />
               );
             },
@@ -67,7 +69,9 @@ export const PupitreTable = ({
         return (
           <button
             className={`edit-btn ${esPagado ? 'revertir' : 'confirmar'}`}
-            onClick={() => onConfirmarPago(r)}
+            onClick={() => {
+              onConfirmarPago(r);
+            }}
             title={esPagado ? 'Revertir a pendiente' : 'Confirmar pago'}
           >
             {esPagado ? <RotateCcw size={16} /> : <CheckCircle size={16} />}
