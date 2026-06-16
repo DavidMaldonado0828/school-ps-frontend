@@ -37,7 +37,12 @@ export const PupitreTable = ({
               return (
                 <label
                   htmlFor={id}
-                  style={{ display: 'inline-flex', alignItems: 'center', padding: '6px', cursor: 'pointer' }}
+                  style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    padding: '6px',
+                    cursor: 'pointer',
+                  }}
                 >
                   <input
                     id={id}
