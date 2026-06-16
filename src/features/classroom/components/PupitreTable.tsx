@@ -33,7 +33,7 @@ export const PupitreTable = ({
             render: (_: unknown, row: unknown) => {
               const r = row as TableRow;
               if (r.estado === 'pagado') return null;
-              const id = `select-${r.estudiante_id}`;
+              const id = `select-${String(r.estudiante_id)}`;
               return (
                 <label
                   htmlFor={id}
