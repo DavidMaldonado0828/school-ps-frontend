@@ -9,6 +9,7 @@ import { PupitreTable } from '@/features/classroom/components/PupitreTable';
 import { UpdatePupitreForm } from '@/features/update-pupitre/components/UpdatePupitreForm';
 import { BulkConfirmModal } from '@/features/bulk-update-pupitre/components/BulkConfirmModal';
 import { SuccessModal } from '@/shared/ui/molecules/SuccessModal';
+import './ClassroomPage.css';
 
 const formatCurrency = (amount: number) =>
   new Intl.NumberFormat('es-CO', {
@@ -170,6 +171,7 @@ export default function ClassroomPage() {
 
       {estudianteEditando && (
         <UpdatePupitreForm
+          isOpen={!!estudianteEditando}
           estudiante_id={estudianteEditando.estudiante_id}
           nombre={estudianteEditando.nombre_estudiante}
           estadoActual={estudianteEditando.estado}

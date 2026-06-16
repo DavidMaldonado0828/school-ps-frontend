@@ -1,4 +1,6 @@
-import { ChevronDown, Plus, Users } from 'lucide-react';
+import { Link } from '@tanstack/react-router';
+import { ChevronDown, Plus, Settings, Users } from 'lucide-react';
+import { Button } from '@/shared/ui/atoms/Button';
 import type { Period } from '../model/types';
 
 interface EscuelasFormacionToolbarProps {
@@ -58,10 +60,16 @@ export const EscuelasFormacionToolbar = ({
             )}
           </div>
         )}
-        <button className="btn btn-primary" onClick={onNewEnrollment}>
+        <Link to="/dashboard/escuelas-formacion/complementarios">
+          <Button variant="outline" size="md">
+            <Settings size={14} />
+            Gestionar complementarios
+          </Button>
+        </Link>
+        <Button variant="primary" size="md" onClick={onNewEnrollment}>
           <Plus size={14} />
           Nueva Inscripción
-        </button>
+        </Button>
       </div>
     </div>
   );

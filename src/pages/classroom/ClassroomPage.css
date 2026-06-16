@@ -1,0 +1,167 @@
+/* =============================================
+   SchoolPS — Classroom (Salón de Tesorería)
+   ============================================= */
+
+.classroom-view {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  animation: fadeIn 0.4s ease-out;
+}
+
+.classroom-view .card {
+  margin-bottom: 0;
+}
+
+/* .page-title h1/p → vienen de index.css (globales) */
+
+/* ── Search card ───────────────────────────── */
+
+.classroom-view .search-header {
+  display: flex;
+  align-items: center;
+  font-weight: 600;
+  font-size: var(--font-size-md);
+  color: var(--brand-primary);
+  margin-bottom: 1rem;
+  gap: 0.5rem;
+}
+
+.classroom-view .search-info {
+  background-color: var(--info-bg);
+  border: 1px solid var(--info-border);
+  border-radius: var(--radius-md);
+  padding: 0.75rem 1rem;
+  font-size: var(--font-size-sm);
+  color: var(--info-text);
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.classroom-view .search-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr auto;
+  gap: 1rem;
+  align-items: end;
+}
+
+.classroom-view .search-form > button {
+  justify-self: end;
+  align-self: end;
+  width: max-content;
+}
+
+/* ── Input groups ──────────────────────────── */
+
+.classroom-view .input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  min-width: 0;
+}
+
+.classroom-view .input-group label {
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-secondary);
+}
+
+.classroom-view .input-group input,
+.classroom-view .input-group select {
+  width: 100%;
+  height: 42px;
+  padding: 0 1rem;
+  background-color: var(--input-bg);
+  border: 1px solid var(--input-border);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-md);
+  font-family: var(--font-sans);
+  color: var(--input-text);
+  outline: none;
+  transition: all var(--transition-fast);
+  box-sizing: border-box;
+}
+
+.classroom-view .input-group input:focus,
+.classroom-view .input-group select:focus {
+  border-color: var(--input-border-focus);
+  box-shadow: 0 0 0 3px rgba(123, 29, 29, 0.1);
+}
+
+.classroom-view .input-group input::placeholder {
+  color: var(--input-placeholder);
+}
+
+/* ── Buttons ───────────────────────────────── */
+
+.classroom-view .btn-primary {
+  background: linear-gradient(135deg, var(--brand-primary) 0%, var(--brand-accent) 100%);
+  color: var(--text-on-brand);
+  height: 42px;
+  padding: 0 1.5rem;
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-md);
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all var(--transition-fast);
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(123, 29, 29, 0.2);
+  white-space: nowrap;
+}
+
+.classroom-view .btn-primary:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 6px rgba(123, 29, 29, 0.3);
+}
+
+.classroom-view .btn-primary:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.classroom-view .btn-orange {
+  background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-md);
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border: none;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  box-shadow: 0 2px 4px rgba(249, 115, 22, 0.2);
+}
+
+.classroom-view .btn-orange:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 6px rgba(249, 115, 22, 0.3);
+}
+
+/* ── Alerts ────────────────────────────────── */
+
+.classroom-view .error-alert {
+  background-color: var(--status-red-bg);
+  border: 1px solid var(--status-red-border);
+  color: var(--status-red);
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-sm);
+}
+
+/* ── Misc ──────────────────────────────────── */
+
+.classroom-view .bulk-update-section {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 0.75rem;
+}

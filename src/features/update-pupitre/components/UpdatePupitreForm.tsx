@@ -9,6 +9,7 @@ const formatCurrency = (amount: number) =>
   }).format(amount);
 
 interface UpdatePupitreFormProps {
+  isOpen: boolean;
   estudiante_id: number;
   nombre: string;
   estadoActual: string;

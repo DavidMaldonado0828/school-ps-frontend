@@ -33,14 +33,22 @@ export const PupitreTable = ({
             render: (_: unknown, row: unknown) => {
               const r = row as TableRow;
               if (r.estado === 'pagado') return null;
+              const id = `select-${r.estudiante_id}`;
               return (
-                <input
-                  type="checkbox"
-                  checked={selectedIds?.has(r.estudiante_id) ?? false}
-                  onChange={() => {
-                    onToggleSelect(r.estudiante_id);
-                  }}
-                />
+                <label
+                  htmlFor={id}
+                  style={{ display: 'inline-flex', alignItems: 'center', padding: '6px', cursor: 'pointer' }}
+                >
+                  <input
+                    id={id}
+                    type="checkbox"
+                    checked={selectedIds?.has(r.estudiante_id) ?? false}
+                    onChange={() => {
+                      onToggleSelect(r.estudiante_id);
+                    }}
+                    style={{ width: 18, height: 18 }}
+                  />
+                </label>
               );
             },
           },
